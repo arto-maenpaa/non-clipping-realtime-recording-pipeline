@@ -10,10 +10,18 @@ This blueprint outlines a precise hardware-to-software method to deliver an opti
 
 The pipeline relies entirely on a physical, analog front-end to shape, gain-stage, and match impedances before sending the signal to the mobile device's built-in hardware preamplifiers. This allows the system to remain completely latency-free.
 
-┌────────────────┐      ┌────────────────────┐      ┌──────────────────┐      ┌──────────────┐      ┌──────────────┐
-│ Analog Source  │ ───> │ Full Analog Path   │ ───> │ Impedance Match  │ ───> │  TRRS Input  │ ───> │ Android Core │
-│ (Mic / Guitar) │      │ (Preamp/Interface) │      │ (iRig 2 Circuit) │      │ (Xiaomi/Etc) │      │ (Unprocessed)│
-└────────────────┘      └────────────────────┘      └──────────────────┘      └──────────────┘      └──────────────┘
+**Signal Flow:**
+1. **Analog Source** (Microphone / Guitar)
+   └── *Routes audio into...*
+2. **Full Analog Path** (Preamp / Audio Interface)
+   └── *Stages clean voltage gain into...*
+3. **Impedance Match** (IK Multimedia iRig 2 Circuit)
+   └── *Adapts signal levels for...*
+4. **Hardware TRRS Input** (3.5mm Socket on Mobile Motherboard)
+   └── *Feeds pristine raw voltage to...*
+5. **Android Core OS** (Captured via UNPROCESSED Audio API Hook)
+
+---
 
 ### 1. The Analog Source (Input Layer)
 The pipeline accommodates any analog acoustic or high-impedance (Hi-Z) electrical source, proving its structural versatility across all gear price brackets:
