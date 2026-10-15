@@ -44,6 +44,13 @@ The signal enters the Android phone physically via the analog **TRRS (3.5mm) mic
 The recording application running on the Android device **must** explicitly call the native Android audio API using the **`UNPROCESSED`** audio source flag (`MediaRecorder.AudioSource.UNPROCESSED`). 
 * **Why this matters:** This bypasses all of Android's internal digital background noise cancellation, hardware ducking, and aggressive digital automatic gain control (AGC). It allows the raw, perfectly staged analog signal to hit the Analog-to-Digital Converter (ADC) completely untouched.
 
+### 🎥 Verified Production Implementation: YouTube Video Workflow
+This architectural pipeline is heavily optimized for direct-to-upload video content creation, eliminating time-consuming audio post-production.
+
+* **Verified Application:** **HedgeCam 2** (Configured to record audio using the native `UNPROCESSED` audio source setting).
+* **Target Destination:** **YouTube Video Production**.
+* **Real-World Result:** By aligning the analog front-end physical staging with HedgeCam 2's unmanaged audio capture stream, the output video file records natively at an optimized **-14 LUFS** loudness ceiling out of the box. The recorded video file can be uploaded straight to YouTube with zero desktop editing, normalization, compression, or volume adjustments required.
+
 ---
 
 ## ⚡ Key Technical Advantages
