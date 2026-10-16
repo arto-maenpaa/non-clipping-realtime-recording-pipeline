@@ -1,8 +1,6 @@
 # Non-Clipping Realtime Recording Pipeline
 
-An open-source hardware routing architecture and signal-flow blueprint designed to achieve zero-latency, digitally unclipped, industry-standard loudness recordings directly into Android mobile devices.
-
-This blueprint outlines a precise hardware-to-software method to deliver an optimized, consistent **-14 LUFS** master-level signal straight out of the box with **zero digital post-production or software normalization required**.
+An audio recording blueprint, circuit, and pipeline with built-in controllable compression and saturation which enables recording -14 LUFS in real-time. Acts exactly like a physical tape recording workflow.
 
 ---
 
@@ -58,6 +56,16 @@ The pipeline accommodates any analog acoustic or high-impedance (Hi-Z) electrica
 The source enters a dedicated analog preamplifier or audio interface utilizing a 100% analog signal path (e.g., M-Audio Fast Track USB or integrated analog mixers). 
 * **The Blueprint Trick:** The gain staging is optimized entirely within the analog domain, utilizing the physical voltage headroom of the analog circuits to cushion explosive transients *before* encountering digital brickwall clipping.
 
+#### ⚠️ Incompatible Hardware & Strict Requirements
+
+This architecture **strictly requires an absolute analog path** before digital conversion. It turns a physical analog gain potentiometer into a natural compressor.
+
+Because of this, modern digital or software-controlled interfaces **will not work**.
+
+* **❌ Incompatible:** Interfaces like the **Audient EVO 4**, which rely on digital encoder knobs or automated software gain (e.g., Smartgain). These interfaces handle gain inside a digital chip, making it impossible to force the analog components to saturate and compress.
+* **✅ Required:** Simple, "dumb" analog hardware (e.g., budget mixers, basic pre-amps, or simple karaoke boxes) featuring **continuous physical potentiometers (analog volume/gain knobs)**.
+
+
 ### 3. Impedance & Level Matching (The Bridge)
 The high-level analog output is routed through an **IK Multimedia iRig 2** circuit. This step acts as the critical hardware interface layer, matching the voltage levels and electrical impedance of line/instrument gear to the highly sensitive microphone input expectations of mobile device chipsets.
 
@@ -93,6 +101,24 @@ Without explicitly switching the input layer, the Android operating system will 
 * **Zero-Latency Tracking:** Because no digital limiters, compressors, or lookahead software buffers are used on the host mobile device, there is absolutely zero monitoring latency. This makes it ideal for timing-critical voice tracking, live podcasting, and musical instrument recording.
 * **Instant -14 LUFS Output:** Eliminates the traditional tedious post-production chain. The recording is instantly loudness-compliant with major streaming platforms right out of the device.
 * **High Headroom Tracking:** Capable of handling aggressive transient spikes (like heavy vocal inflections, slap bass, or dynamic guitar picking) by absorbing the energy natively in the analog pre-stages. It is highly optimized for voice recording, and works exceptionally well for guitar/bass tracking.
+
+---
+
+## 🤝 Submit Your Setup
+Have you built a working variant of this digital tape pipeline using different gear? Contributed setups are highly welcome!
+1. Fork this repository.
+2. Copy `setups/template.md`.
+3. Fill it out with your specific hardware chain and sonic results.
+4. Submit a Pull Request.
+
+---
+
+## ⚖️ Contribution & Ownership Terms
+
+By submitting a hardware setup or blueprint variant to this repository, you agree to the following terms:
+1. **You Retain Ownership:** You retain full copyright ownership over your specific configuration details, text descriptions, and hardware modifications.
+2. **Open-Source Licensing:** By submitting a Pull Request, you explicitly agree to license your contribution to the public under the repository's existing **CERN-OHL-S v2** license framework.
+3. **Attribution:** Your name and contribution will be permanently preserved in the repository's public Git history as the author of that specific implementation.
 
 ---
 
